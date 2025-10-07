@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw
 import qrcode
 from qrcode.constants import ERROR_CORRECT_H
 from qrcode.image.svg import SvgImage
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputFile
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, ContextTypes, filters
 
 # ✅ Token bot của anh (đổi nếu anh revoke token)
@@ -77,7 +77,10 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         png = make_qr_png_with_logo(url, LOGO_PATH); svg = make_qr_svg(url)
         await update.message.reply_photo(photo=png, caption=f"QR Google Maps (có logo) cho:\n{url}", read_timeout=60)
-        await update.message.reply_document(document=("qr.svg", svg), caption="SVG vector (không logo) để in.", read_timeout=60)
+        await update.message.reply_document(
+    document=InputFile(svg_bytes, filename="qr.svg"),
+    caption="SVG vector (không logo) để in.",
+    read_timeout=60)
     except Exception as e:
         await update.message.reply_text(f"Lỗi tạo QR: {e}")
 
@@ -93,3 +96,4 @@ def main():
     print("QR Map Bot (logo) is running…"); app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == "__main__": main()
+
