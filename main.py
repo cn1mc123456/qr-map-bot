@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw
 import qrcode
 from qrcode.constants import ERROR_CORRECT_H
 from qrcode.image.svg import SvgImage
-from telegram import from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputFile
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, InputFile
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, ContextTypes, filters
 
 # ✅ Token bot của anh (đổi nếu anh revoke token)
@@ -96,4 +96,5 @@ def main():
     print("QR Map Bot (logo) is running…"); app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == "__main__": main()
+
 
