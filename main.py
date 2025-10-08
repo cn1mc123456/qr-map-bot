@@ -64,7 +64,7 @@ def make_qr_svg(data: str) -> bytes:
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     kb = InlineKeyboardMarkup([[InlineKeyboardButton("Hướng dẫn", callback_data="help")]])
-    await update.message.reply_text("Chào anh Kiệt 👋 Dán link Google Maps, em trả QR có logo VietinBank!", reply_markup=kb, disable_web_page_preview=True)
+    await update.message.reply_text("Chào Bạn 👋 Dán link Google Maps, em trả QR có logo VietinBank!", reply_markup=kb, disable_web_page_preview=True)
 
 async def help_cb(update: Update, context: ContextTypes.DEFAULT_TYPE):
     q = update.callback_query; await q.answer(); await q.edit_message_text(HELP_TEXT, disable_web_page_preview=True)
@@ -96,5 +96,6 @@ def main():
     print("QR Map Bot (logo) is running…"); app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == "__main__": main()
+
 
 
